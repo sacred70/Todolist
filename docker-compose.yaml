@@ -43,7 +43,7 @@ services:
       - "8000:8000"
     volumes:
       - ./core:/opt/app/core/
-      -  ./todolist:/opt/app/todolist/
+      - ./todolist:/opt/app/todolist/
   collect_static:
     build: .
     env_file: .env
@@ -62,7 +62,7 @@ services:
         collect_static:
           condition: service_completed_successfully
     volumes:
-      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf
       - django_static:/usr/share/nginx/html/static/
 volumes:
     dip1.1_pg_data:
