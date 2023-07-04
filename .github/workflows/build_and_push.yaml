@@ -49,6 +49,7 @@ jobs:
             docker-compose up -d
       - name: CleanUp
         uses: appleboy/ssh-action@master
+        if: always()
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
