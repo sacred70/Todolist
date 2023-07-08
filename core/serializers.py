@@ -48,3 +48,4 @@ class UpdatePasswordSerializer(serializers.Serializer):
         if not request.user.check_password(old_password):
             raise exceptions.ValidationError('Пароль не совпадает')
         return old_password
+#
