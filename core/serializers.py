@@ -13,7 +13,7 @@ class CreateUserSerializers(serializers.ModelSerializer):
         model = User
         fields = ('id', 'username', 'first_name', 'last_name', 'email', 'password', 'password_repeat')
 
-    def validate(self, attrs:dict) -> dict:
+    def validate(self, attrs: dict) -> dict:
         if attrs['password'] != attrs['password_repeat']:
             raise exceptions.ValidationError('Пароли не совпадают')
         return attrs
@@ -48,4 +48,3 @@ class UpdatePasswordSerializer(serializers.Serializer):
         if not request.user.check_password(old_password):
             raise exceptions.ValidationError('Пароль не совпадает')
         return old_password
-#
