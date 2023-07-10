@@ -49,10 +49,10 @@ jobs:
             docker compose up -d
       - name: CleanUp
         uses: appleboy/ssh-action@master
-        command_timeout: 20
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USER }}
           password: ${{ secrets.SSH_PASSWORD }}
+          command_timeout: 20
           script: |
             docker system prune -f -a
