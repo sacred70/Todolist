@@ -51,3 +51,4 @@ class UpdatePasswordView(generics.GenericAPIView):
         request.user.save()
 
         return Response(serializer.data)
+#
