@@ -12,4 +12,4 @@ class PasswordField(serializers.CharField):
         super().__init__(**kwargs)
         if validate:
             self.validators.append(validate_password)
-#
+
