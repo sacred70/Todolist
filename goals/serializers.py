@@ -54,7 +54,6 @@ class GoalCommentSerializer(serializers.ModelSerializer):
         if self.context['request'].user_id != value.user_id:
             raise PermissionDenied
 
-
         return value
 
 

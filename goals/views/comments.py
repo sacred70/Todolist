@@ -22,7 +22,7 @@ class GoalCommentListView(generics.ListAPIView):
         return GoalComment.objects.select_serialize('user').filter(user=self.request.user)
 
 
-class GoalCommenDetailView(generics.RetrieveUpdateDestroyAPIView):
+class GoalCommentDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [GoalCommentPermission]
     serializer_class = GoalCommentWithUserSerializer
     queryset = GoalComment.objects.select_serialize('user')
