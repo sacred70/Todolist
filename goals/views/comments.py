@@ -26,3 +26,4 @@ class GoalCommentDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [GoalCommentPermission]
     serializer_class = GoalCommentWithUserSerializer
     queryset = GoalComment.objects.select_related('user')
+#
