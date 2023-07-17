@@ -1,11 +1,8 @@
-from goals.apps import GoalsConfig
 from django.urls import path
 
 from goals.views.comments import GoalCommentCreateView, GoalCommentListView, GoalCommentDetailView
 from goals.views.goals import GoalListView, GoalCreateView, GoalDetailView
 from goals.views.categories import CategoryCreateView, CategoryListView, CategoryDetailView
-
-app_name = GoalsConfig
 
 
 urlpatterns = [
