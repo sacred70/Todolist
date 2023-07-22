@@ -9,4 +9,3 @@ urlpatterns = [
     path('update_password', UpdatePasswordView.as_view(), name='update_password'),
 
 ]
-#
