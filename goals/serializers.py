@@ -6,7 +6,7 @@ from goals.models import GoalCategory, Goal, GoalComment
 
 
 class GoalCategorySerializer(serializers.ModelSerializer):
-    user = serializers.HiddenField(default=serializers.CurrentUserDefault)
+    user = serializers.HiddenField(default=serializers.CurrentUserDefault())
 
     class Meta:
         model = GoalCategory
