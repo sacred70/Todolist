@@ -11,7 +11,7 @@ class GoalCategorySerializer(serializers.ModelSerializer):
     class Meta:
         model = GoalCategory
         fields = '__all__'
-        read_only_fields = ('id', 'created', 'updated', 'user', 'id_deleted')
+        read_only_fields = ('id', 'created', 'updated', 'user', 'is_deleted')
 
 
 class GoalCategoryWithUserSerializer(GoalCategorySerializer):
