@@ -14,7 +14,7 @@ class BoardPermission(IsAuthenticated):
         if request.method not in SAFE_METHODS:
             _filters['role'] = BoardParticipant.Role.owner
 
-        return BoardParticipant.objects.filter(**_filters).exsist()
+        return BoardParticipant.objects.filter(**_filters).exists()
 
 
 class GoalCategoryPermission(IsAuthenticated):
@@ -24,7 +24,7 @@ class GoalCategoryPermission(IsAuthenticated):
         if request.method not in SAFE_METHODS:
             _filters['role__in'] = [BoardParticipant.Role.owner, BoardParticipant.Role.writer]
 
-        return BoardParticipant.objects.filter(**_filters).exsist()
+        return BoardParticipant.objects.filter(**_filters).exists()
 
 
 class GoalPermission(IsAuthenticated):
@@ -34,7 +34,7 @@ class GoalPermission(IsAuthenticated):
         if request.method not in SAFE_METHODS:
             _filters['role__in'] = [BoardParticipant.Role.owner, BoardParticipant.Role.writer]
 
-        return BoardParticipant.objects.filter(**_filters).exsist()
+        return BoardParticipant.objects.filter(**_filters).exists()
 
 
 class GoalCommentPermission(IsAuthenticated):
