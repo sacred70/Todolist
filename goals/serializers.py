@@ -9,7 +9,7 @@ from django.db import transaction
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        read_only_fields = ('id', 'created', 'updated', 'is_delete')
+        read_only_fields = ('id', 'created', 'updated', 'is_deleted')
         fields = '__all__'
 
 
@@ -70,6 +70,7 @@ class GoalCategorySerializer(serializers.ModelSerializer):
         ).exists():
             raise PermissionDenied
         return board
+
     class Meta:
         model = GoalCategory
         fields = '__all__'
