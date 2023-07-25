@@ -29,6 +29,11 @@ class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [GoalCategoryPermission]
     requests = GoalCategory.objects.exclude(is_deleted=True)
 
+    def get_queryset(self):
+        return GoalCategory.objects.filter(
+            board__participants__user=self.request.user, is_deleted=False
+        )
+
     def perform_destroy(self, instance: GoalCategory):
         with transaction.atomic():
             instance.is_deleted = True
