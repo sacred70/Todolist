@@ -21,7 +21,7 @@ class CategoryListView(generics.ListAPIView):
     def get_queryset(self):
         return GoalCategory.objects.filter(
             board__participants__user=self.request.user
-            ).exclude(is_delete=True)
+            ).exclude(is_deleted=True)
 
 
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
