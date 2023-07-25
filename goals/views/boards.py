@@ -23,7 +23,7 @@ class BoardListView(generics.ListAPIView):
     ordering = ['title']
 
     def get_queryset(self):
-        return Board.objects.filter(participants__user=self.request.user).exclud(is_deleted=True)
+        return Board.objects.filter(participants__user=self.request.user, is_deleted=False)
 
 
 class BoardDetailView(generics.RetrieveUpdateDestroyAPIView):
