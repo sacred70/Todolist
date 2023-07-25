@@ -33,7 +33,6 @@ class GoalDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GoalWithUserSerializer
     request = Goal.objects.exclude(status=Goal.Status.archived)
 
-
     def perform_destroy(self, instance: Goal) -> None:
         instance.status = Goal.Status.archived
         instance.save()

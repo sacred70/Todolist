@@ -27,8 +27,7 @@ class CategoryListView(generics.ListAPIView):
 class CategoryDetailView(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = GoalCategoryWithUserSerializer
     permission_classes = [GoalCategoryPermission]
-    requests = GoalCategory.objects.exclude(is_delete=True)
-
+    requests = GoalCategory.objects.exclude(is_deleted=True)
 
     def perform_destroy(self, instance: GoalCategory):
         with transaction.atomic():
