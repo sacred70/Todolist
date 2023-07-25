@@ -9,7 +9,7 @@ from django.db import transaction
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        read_only_fields = ('id', 'created', 'updated', 'is_deleted')
+        read_only_fields = ('id', 'created', 'updated', 'is_delete')
         fields = '__all__'
 
 
