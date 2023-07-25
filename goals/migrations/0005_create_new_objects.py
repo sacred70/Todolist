@@ -5,7 +5,7 @@ from django.utils import timezone
 
 
 def create_objects(apps, schema_editor) -> None:
-    User = apps.get_mode('core', 'user')
+    User = apps.get_model('core', 'user')
     Board = apps.get_model("goals", "Board")
     BoardParticipant = apps.get_model("goals", "BoardParticipant")
     GoalCategory = apps.get_model("goals", "GoalCategory")
@@ -27,3 +27,4 @@ class Migration(migrations.Migration):
 
     operations = [migrations.RunPython(create_objects, migrations.RunPython.noop)
     ]
+

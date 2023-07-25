@@ -26,7 +26,7 @@ class BoardParticipant(BaseModel):
 
 
 class GoalCategory(BaseModel):
-    board = models.ForeignKey(Board, on_delete=models.PROTECT, related_name='categories', null=True)
+    board = models.ForeignKey(Board, on_delete=models.PROTECT, related_name='categories')
     title = models.CharField(verbose_name="Название", max_length=255)
     user = models.ForeignKey(User, verbose_name="Автор", on_delete=models.PROTECT)
     is_deleted = models.BooleanField(verbose_name="Удалена", default=False)
