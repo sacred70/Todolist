@@ -3,9 +3,13 @@ from django.urls import path
 from goals.views.comments import GoalCommentCreateView, GoalCommentListView, GoalCommentDetailView
 from goals.views.goals import GoalListView, GoalCreateView, GoalDetailView
 from goals.views.categories import CategoryCreateView, CategoryListView, CategoryDetailView
+from goals.views.boards import BoardListView, BoardCreateView
 
 
 urlpatterns = [
+    path('board/create', BoardCreateView.as_view(), name='create-board'),
+    path('board/list', BoardListView.as_view(), name='board-list'),
+
     path('goal_category/create', CategoryCreateView.as_view()),
     path('goal_category/list', CategoryListView.as_view()),
     path('goal_category/<int:pk>', CategoryDetailView.as_view()),

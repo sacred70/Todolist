@@ -20,6 +20,7 @@ class BoardParticipant(BaseModel):
     board = models.ForeignKey(Board, on_delete=models.PROTECT, related_name="participants")
     user = models.ForeignKey(User, on_delete=models.PROTECT, related_name="participants")
     role = models.PositiveSmallIntegerField(choices=Role.choices, default=Role.owner)
+    editable_roles = Role.choices[1:]
 
     class Meta:
         unique_together = ('board', 'user')
