@@ -33,7 +33,7 @@ class BoardDetailView(generics.RetrieveUpdateDestroyAPIView):
     def get_queryset(self):
         return Board.objects.prefetch_related('participants__user').exclud(is_deleted=True)
 
-    def perform_destroy(self, instance:Board):
+    def perform_destroy(self, instance: Board):
         with transaction.atomic():
             instance.is_deleted = True
             instance.save()
