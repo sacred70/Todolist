@@ -31,7 +31,17 @@ class GoalListView(generics.ListAPIView):
 class GoalDetailView(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [GoalPermission]
     serializer_class = GoalWithUserSerializer
-    request = Goal.objects.exclude(status=Goal.Status.archived)
+    #request = Goal.objects.exclude(status=Goal.Status.archived)
+
+    def get_queryset(self):
+        return (
+            Goal.objects.select_related('user')
+            .filter(
+                category__board__participants__user=self.request.user,
+                category__is_deleted=False,
+            )
+            .exclude(status=Goal.Status.archived)
+        )
 
     def perform_destroy(self, instance: Goal) -> None:
         instance.status = Goal.Status.archived
