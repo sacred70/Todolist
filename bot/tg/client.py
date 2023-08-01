@@ -46,3 +46,4 @@ class TgClient:
         except ValidationError:
             logger.error('Failed serialize telegram response: %s', data)
             raise TgClientError
+#
