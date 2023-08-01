@@ -178,7 +178,7 @@ LOGGING = {
         }
     },
     "loggers": {
-        '':{
+        '': {
             'Level': 'DEBUG' if DEBUG else 'INFO',
             'handlers': ['console'],
         },
