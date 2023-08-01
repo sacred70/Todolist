@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'django_filters',
     'goals',
     'core',
+    'bot',
 ]
 
 
@@ -154,3 +155,37 @@ STATIC_ROOT = BASE_DIR.joinpath('static')
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 AUTH_USER_MODEL = 'core.User'
+
+
+LOGGING = {
+    "version": 1,
+    "disable_existing_loggers": False,
+    'formatters': {
+        'console': {
+            'format': '%(asctime)s - %(levelname)s - %(message)s',
+            'datefmt': '%y-%m-%d %H-%M-%S'
+
+        }
+    },
+    "handlers": {
+        "console": {
+            "class": "logging.StreamHandler",
+            "formatter": "console"
+        },
+        'null': {
+            'class': 'logging.NullHandler'
+
+        }
+    },
+    "loggers": {
+        '':{
+            'Level': 'DEBUG' if DEBUG else 'INFO',
+            'handlers': ['console'],
+        },
+        'urllib3': {
+            'handler': ['null']
+        },
+    }
+
+}
+BOT_TOKEN = env('BOT_TOKEN')
