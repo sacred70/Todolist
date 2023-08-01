@@ -188,4 +188,4 @@ LOGGING = {
     }
 
 }
-BOT_TOKEN = env.str('BOT_TOKEN')
+BOT_TOKEN = env('BOT_TOKEN')
