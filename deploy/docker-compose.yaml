@@ -33,6 +33,17 @@ services:
         condition: service_healthy
       run_migrations:
         condition: service_completed_successfully
+
+  bot:
+    image: ${DOCKERHUB_USER}/diplom_15:latest
+    env_file: .env
+    depends_on:
+      db:
+        condition: service_healthy
+      run_migrations:
+          condition: service_completed_successfully
+    command: python manage.py runbot
+
   collect_static:
     image: ${DOCKERHUB_USER}/diplom_15:latest
     env_file: .env
