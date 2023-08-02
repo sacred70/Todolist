@@ -1,32 +1,4 @@
-import secrets
-
 from django.db import models
-
-from core.models import User
-
-
-class TgUser(models.Model):
-    chat_id = models.BigIntegerField(unique=True)
-    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True, blank=True, default=None)
-    verification_code = models.CharField(max_length=100, null=True, blank=True, default=None)
-
-    @staticmethod
-    def generate_verification_code():
-        return str(secrets.token_urlsafe(32))
-
-
-
-
-
-
-
-
-
-
-
-
-
-"""from django.db import models
 from core.models import User
 from django.utils.crypto import get_random_string
 
@@ -51,4 +23,3 @@ class TgUser(models.Model):
 
     def __str__(self):
         return f'{self.__class__.__name__} ({self.chat_id})'
-"""
