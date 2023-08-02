@@ -14,11 +14,11 @@ class TgUser(models.Model):
         return bool(self.user)
 
     @staticmethod
-    def generate_verification_code() -> str:
+    def _generate_verification_code() -> str:
         return get_random_string(20)
 
     def update_verification_code(self) -> None:
-        self.verification_code = self.generate_verification_code()
+        self.verification_code = self._generate_verification_code()
         self.save(update_fields=['verification_code'])
 
     def __str__(self):

@@ -90,7 +90,7 @@ class Command(BaseCommand):
             self.tg_client.send_message(chat_id=msg.chat.id, text=f'Unknown command!')
 
     def handle_unauthorized_user(self, tg_user: TgUser, msg: Message):
-        code = tg_user.generate_verification_code()
+        code = tg_user._generate_verification_code()
         tg_user.verification_code = code
         tg_user.save()
 
