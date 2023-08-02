@@ -3,13 +3,13 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 
 from bot.models import TgUser
-from bot.serializers import VerificationSerializer
+from bot.serializers import TgUserSerializer
 from bot.tg.client import TgClient
 from todolist.settings import BOT_TOKEN
 
 
 class VerificationView(APIView):
-    serializer_class = VerificationSerializer
+    serializer_class = TgUserSerializer
     permission_classes = [permissions.IsAuthenticated]
 
     def patch(self, request):
