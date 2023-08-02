@@ -1,10 +1,7 @@
 from django.urls import path
 
-from bot import views
-
-app_name = 'bot'
+from views import VerificationView
 
 urlpatterns = [
-
-    path('verify', views.VerificationCodeView.as_view()),
+    path('verify', VerificationView.as_view()),
 ]
