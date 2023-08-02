@@ -1,5 +1,43 @@
 from django.core.management import BaseCommand
 
+from bot.tg.client import TgClient
+from bot.tg.schemas import Message
+from bot.models import TgUser
+
+
+class Command(BaseCommand):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.tg_client = TgClient()
+
+    def handle(self, *args, **options):
+        offset = 0
+
+        self.stdout.write(self.style.SUCCESS('Bot start handling...'))
+
+        while True:
+            res = self.tg_client.get_updates(offset=offset)
+            for item in res.result:
+                offset = item.update_id + 1
+                self.handle_message(item.message)
+
+    def handle_message(self, msg: Message) -> None:
+        tg_user, _ = TgUser.objects.get_or_create(
+            chat_id=msg.message_from.id, defaults={'username': msg.message_from.username}
+        )
+        if not tg_user.is_verified:
+            tg_user.update_verification_code()
+            self.tg_client.send_message(msg.message_from.id, text=tg_user.verification_code)
+        else:
+            self.handle_auth_user(tg_user, msg)
+
+    def handle_auth_user(self, tg_user: TgUser, msg: Message) -> None:
+        print('Обработка')
+
+
+
+"""from django.core.management import BaseCommand
+
 from bot.models import TgUser
 from bot.tg.client import TgClient
 from bot.tg.schemas import Message
@@ -94,6 +132,6 @@ class Command(BaseCommand):
         tg_user.verification_code = code
         tg_user.save()
 
-        self.tg_client.send_message(chat_id=msg.chat.id, text=f'Hello! Verification code: {code}')
+        self.tg_client.send_message(chat_id=msg.chat.id, text=f'Hello! Verification code: {code}')"""
 
 
