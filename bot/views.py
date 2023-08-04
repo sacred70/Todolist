@@ -10,16 +10,17 @@ from bot.serializers import TgUserSerializer
 from bot.tg.client import TgClient
 
 
-class VerificationCodeView(generics.GenericAPIView):
+class VerificationCodeView(generics.UpdateAPIView):
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TgUserSerializer
+    queryset = TgUser.objects.all()
 
     def patch(self, request: Request, *args: Any, **kwargs: Any) -> Response:
-        serializer: TgUserSerializer = self.get_serializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
+        # serializer: TgUserSerializer = self.get_serializer(data=request.data)
+        # serializer.is_valid(raise_exception=True)
 
         try:
-            tg_user = TgUser.objects.get(verification_code=serializer.validated_data['verification_code'])
+            tg_user = self.get_queryset().get(verification_code=request.data.get('verification_code'))
         except TgUser.DoesNotExist:
             raise AuthenticationFailed
 
