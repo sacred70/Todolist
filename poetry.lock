@@ -286,6 +286,20 @@ files = [
 Django = ">=3.2"
 
 [[package]]
+name = "django-request-logging"
+version = "0.7.5"
+description = "Django middleware that logs http request body."
+optional = false
+python-versions = "*"
+files = [
+    {file = "django-request-logging-0.7.5.tar.gz", hash = "sha256:94934d77c2d0fd76fdb9879b874368aa7d55672f0c7e1f59dd39b991c3e123b4"},
+    {file = "django_request_logging-0.7.5-py2.py3-none-any.whl", hash = "sha256:4d9e520842303aaf654c6ffd39831b04513ea343574f8579a59ada46ffb95fb6"},
+]
+
+[package.dependencies]
+Django = "*"
+
+[[package]]
 name = "djangorestframework"
 version = "3.14.0"
 description = "Web APIs for Django, made easy."
@@ -659,4 +673,4 @@ zstd = ["zstandard (>=0.18.0)"]
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "dbcbe8a2f52fe34ab6e31e9e5fa383a8100280c6dfe9ea49026b32d1f7aded93"
+content-hash = "f35e12d0c9353cde412060efc80185e43bcc86f33effaec540006a0f96db578c"
