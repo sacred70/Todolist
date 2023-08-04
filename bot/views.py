@@ -25,6 +25,6 @@ class VerificationCodeView(generics.UpdateAPIView):
             raise AuthenticationFailed
 
         tg_user.user = request.user
-        tg_user.save()
+        tg_user.save(update_fields=['user'])
         TgClient().send_message(chat_id=tg_user.chat_id, text='Bot has been verified')
         return Response(TgUserSerializer(tg_user).data)
