@@ -9,6 +9,6 @@ class TgUserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = TgUser
-        fields = ('tg_id', 'username', 'verification_code', 'user_id')
+        fields = ('verification_code',)
         read_only_fields = ('tg_id', 'username', 'user_id')
         extra_kwargs = {'verification_code': {'write_only': True}}
