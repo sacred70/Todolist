@@ -73,7 +73,7 @@ class Command(BaseCommand):
                     category_id=int(self._wait_list[msg.chat.id]['category_id']),
                     title=msg.text,
                 )
-                self.tg_client.send_message(chat_id=msg.chat.id, text='Goal save')
+                self.tg_client.send_message(chat_id=msg.chat.id, text='Цель сохранена')
                 self._wait_list.pop(msg.chat.id, None)
 
             elif create_chat['stage'] == 1:
