@@ -15,11 +15,13 @@ class TgClientError(Exception):
 
 
 class TgClient:
+    """Взаимодействие с API Telegram"""
     def __init__(self, token: str | None = None):
         self.__token = token if token else settings.BOT_TOKEN
         self.__url = f'https://api.telegram.org/bot{self.__token}/'
 
     def __get_url(self, method: str) -> str:
+        """Создание url"""
         return f'{self.__url}{method}'
 
     def get_updates(self, offset: int = 0, timeout: int = 60, **kwargs) -> GetUpdatesResponse:
