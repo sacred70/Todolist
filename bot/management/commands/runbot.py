@@ -35,7 +35,7 @@ class Command(BaseCommand):
         if msg.text == '/cancel':
             self._wait_list.pop(msg.chat.id, None)
             create_chat = None
-            self.tg_client.send_message(chat_id=msg.chat.id, text='Operation was canceled')
+            self.tg_client.send_message(chat_id=msg.chat.id, text='Операция отменена')
 
         if msg.text in commands and not create_chat:
             if msg.text == '/goals':
@@ -43,7 +43,7 @@ class Command(BaseCommand):
                     category__is_deleted=False, category__board__participants__user_id=tg_user.user.id
                 ).exclude(status=Goal.Status.archived)
                 goals = [f'{goal.id} - {goal.title}' for goal in qs]
-                self.tg_client.send_message(chat_id=msg.chat.id, text='No goals' if not goals else '\n'.join(goals))
+                self.tg_client.send_message(chat_id=msg.chat.id, text='Нет целей' if not goals else '\n'.join(goals))
 
             if msg.text == '/create':
                 categories_qs = GoalCategory.objects.filter(
@@ -57,7 +57,7 @@ class Command(BaseCommand):
                     categories_id.append(str(category.id))
 
                 self.tg_client.send_message(
-                    chat_id=msg.chat.id, text=f'Choose number of category:\n' + '\n'.join(categories)
+                    chat_id=msg.chat.id, text=f'Выберите номер категории:\n' + '\n'.join(categories)
                 )
                 self._wait_list[msg.chat.id] = {
                     'categories': categories,
@@ -78,22 +78,22 @@ class Command(BaseCommand):
 
             elif create_chat['stage'] == 1:
                 if msg.text in create_chat.get('categories_id', []):
-                    self.tg_client.send_message(chat_id=msg.chat.id, text='Enter title for goal')
+                    self.tg_client.send_message(chat_id=msg.chat.id, text='Введите название цели')
                     self._wait_list[msg.chat.id] = {'category_id': msg.text, 'stage': 2}
                 else:
                     self.tg_client.send_message(
                         chat_id=msg.chat.id,
-                        text='Enter correct number of category\n' + '\n'.join(create_chat.get('categories', [])),
+                        text='Введите правильный номер категории\n' + '\n'.join(create_chat.get('категории', [])),
                     )
 
         if msg.text not in commands and not create_chat:
-            self.tg_client.send_message(chat_id=msg.chat.id, text=f'Unknown command!')
+            self.tg_client.send_message(chat_id=msg.chat.id, text=f'Неизвестная команда!')
 
     def handle_unauthorized_user(self, tg_user: TgUser, msg: Message):
         code = tg_user.generate_verification_code()
         tg_user.verification_code = code
         tg_user.save()
 
-        self.tg_client.send_message(chat_id=msg.chat.id, text=f'Hello! Verification code: {code}')
+        self.tg_client.send_message(chat_id=msg.chat.id, text=f'Привет! Код верификации: {code}')
 
 
