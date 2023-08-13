@@ -1,13 +1,8 @@
 import datetime
-import logging
-
 import factory.django
 from freezegun import freeze_time
-
 from core.models import User
 from goals.models import Board, BoardParticipant, Goal, GoalCategory, GoalComment
-
-logger = logging.getLogger('main')
 
 
 class DataBaseFactory(factory.django.DjangoModelFactory):

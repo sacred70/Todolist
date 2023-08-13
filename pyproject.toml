@@ -20,6 +20,7 @@ pytest = "^7.4.0"
 pytest-factoryboy = "^2.5.1"
 pytest-django = "^4.5.2"
 freezegun = "^1.2.2"
+drf-spectacular = "^0.26.4"
 
 
 [tool.poetry.group.dev.dependencies]
