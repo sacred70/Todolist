@@ -21,7 +21,6 @@ class TgClient:
         self.__url = f'https://api.telegram.org/bot{self.__token}/'
 
     def __get_url(self, method: str) -> str:
-        """Создание url"""
         return f'{self.__url}{method}'
 
     def get_updates(self, offset: int = 0, timeout: int = 60, **kwargs) -> GetUpdatesResponse:

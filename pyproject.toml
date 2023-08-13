@@ -16,6 +16,10 @@ django-filter = "^23.2"
 pydantic = ">=1.10,<2.0"
 requests = "^2.31.0"
 django-request-logging = "^0.7.5"
+pytest = "^7.4.0"
+pytest-factoryboy = "^2.5.1"
+pytest-django = "^4.5.2"
+freezegun = "^1.2.2"
 
 
 [tool.poetry.group.dev.dependencies]
