@@ -45,6 +45,7 @@ INSTALLED_APPS = [
     'goals',
     'core',
     'bot',
+    'drf_spectacular',
 ]
 
 SOCIAL_AUTH_JSONFIELD_ENABLED = True
